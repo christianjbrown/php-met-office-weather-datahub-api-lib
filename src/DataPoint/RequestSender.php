@@ -35,8 +35,12 @@ final class RequestSender implements RequestSenderInterface
         if ($resolutionType instanceof ResolutionType) {
             $queryStrings[self::QUERY_KEY_RESOLUTION] = $resolutionType->value;
         }
-        if ($time) {
-            $queryStrings[self::QUERY_KEY_TIME] = gmdate(self::TIME_FORMAT, $time);
+        if (null !== $time) {
+            if (ResolutionType::DAILY === $resolutionType) {
+                $queryStrings[self::QUERY_KEY_TIME] = gmdate(self::DATE_FORMAT, $time);
+            } elseif (ResolutionType::THREE_HOURLY === $resolutionType) {
+                $queryStrings[self::QUERY_KEY_TIME] = gmdate(self::DATE_TIME_FORMAT, $time);
+            }
         }
         $data = $this->jsonRequestSender->get(self::FRIENDLY_NAME, $url, $queryStrings);
 
