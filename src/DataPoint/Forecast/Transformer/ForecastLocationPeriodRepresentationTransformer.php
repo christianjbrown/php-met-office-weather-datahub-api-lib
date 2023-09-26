@@ -58,10 +58,10 @@ final class ForecastLocationPeriodRepresentationTransformer implements ForecastL
         }
         $visibility = Visibility::from($data[self::DATA_KEY_VISIBILITY]);
 
-        if (!isset($data[self::DATA_KEY_WEATHER_TYPE]) || !is_numeric($data[self::DATA_KEY_WEATHER_TYPE]) || null === WeatherType::tryFrom((int) $data[self::DATA_KEY_WEATHER_TYPE])) {
-            throw new UserFriendlyException(sprintf('Response from %s was not as expected, missing or corrupt "%s".', $this->friendlyName, self::DATA_KEY_WEATHER_TYPE));
+        $weatherType = null;
+        if (isset($data[self::DATA_KEY_WEATHER_TYPE]) && is_numeric($data[self::DATA_KEY_WEATHER_TYPE]) && null !== WeatherType::tryFrom((int) $data[self::DATA_KEY_WEATHER_TYPE])) {
+            $weatherType = WeatherType::from((int) $data[self::DATA_KEY_WEATHER_TYPE]);
         }
-        $weatherType = WeatherType::from((int) $data[self::DATA_KEY_WEATHER_TYPE]);
 
         if (empty($data[self::DATA_KEY_WIND_DIRECTION]) || !is_string($data[self::DATA_KEY_WIND_DIRECTION]) || null === WindDirection::tryFrom($data[self::DATA_KEY_WIND_DIRECTION])) {
             throw new UserFriendlyException(sprintf('Response from %s was not as expected, missing or corrupt "%s".', $this->friendlyName, self::DATA_KEY_WIND_DIRECTION));

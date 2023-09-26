@@ -37,6 +37,5 @@ enum WeatherType: int
     case THUNDER = 30;
     case THUNDER_SHOWER_DAY = 29;
     case THUNDER_SHOWER_NIGHT = 28;
-    // case NOT_AVAILABLE = NA;
     case TRACE_RAIN = -1;
 }
