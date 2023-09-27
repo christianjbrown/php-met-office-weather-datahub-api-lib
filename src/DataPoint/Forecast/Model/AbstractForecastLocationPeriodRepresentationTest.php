@@ -10,9 +10,11 @@ use ChristianBrown\MetOffice\DataPoint\Enums\WindDirection;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @internal
+ * @covers \ChristianBrown\MetOffice\DataPoint\Forecast\Model\AbstractForecastLocationPeriodRepresentation
  *
- * @coversNothing
+ * @codeCoverageIgnore
+ *
+ * @internal
  *
  * @small
  */

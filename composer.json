@@ -6,6 +6,11 @@
         "christianjbrown/json-api-client": "dev-main",
         "psr/http-client": "^1.0"
     },
+    "scripts": {
+        "test": [
+            "./vendor/bin/phpunit . --coverage-text"
+        ]
+    },
     "autoload": {
         "psr-4": {
             "ChristianBrown\\MetOffice\\": "src/"
@@ -20,5 +25,8 @@
             "type": "github",
             "url": "git@github.com:christianjbrown/json-api-client.git"
         }
-    ]
+    ],
+    "require-dev": {
+        "phpunit/phpunit": "^10.3"
+    }
 }

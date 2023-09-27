@@ -4,11 +4,11 @@ declare(strict_types=1);
 
 namespace ChristianBrown\MetOffice\DataPoint\Forecast\Model;
 
-final class ForecastLocationPeriod
+final readonly class ForecastLocationPeriod
 {
-    public readonly array $representations;
-    public readonly string $type;
-    public readonly string $value;
+    public array $representations;
+    public string $type;
+    public string $value;
 
     public function __construct(string $type, string $value, array $representations)
     {
