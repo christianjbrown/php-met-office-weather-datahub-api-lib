@@ -2,28 +2,31 @@
 
 declare(strict_types=1);
 
-namespace ChristianBrown\MetOffice\DataPoint\Forecast\Model;
+namespace ChristianBrown\MetOffice\Tests\DataPoint\Forecast\Model;
 
+use ChristianBrown\MetOffice\DataPoint\Enums\RepresentationTimePeriod;
 use ChristianBrown\MetOffice\DataPoint\Enums\Visibility;
 use ChristianBrown\MetOffice\DataPoint\Enums\WeatherType;
 use ChristianBrown\MetOffice\DataPoint\Enums\WindDirection;
+use ChristianBrown\MetOffice\DataPoint\Forecast\Model\ForecastLocationDayPeriodRepresentation;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @covers \ChristianBrown\MetOffice\DataPoint\Forecast\Model\AbstractForecastLocationPeriodRepresentation
+ * @covers \ChristianBrown\MetOffice\DataPoint\Forecast\Model\ForecastLocationDayPeriodRepresentation
  *
- * @codeCoverageIgnore
- *
- * @internal
- *
- * @small
+ * @uses \ChristianBrown\MetOffice\DataPoint\Forecast\Model\AbstractForecastLocationPeriodRepresentation
+ * @uses \ChristianBrown\MetOffice\DataPoint\Enums\RepresentationTimePeriod
+ * @uses \ChristianBrown\MetOffice\DataPoint\Enums\Visibility
+ * @uses \ChristianBrown\MetOffice\DataPoint\Enums\WeatherType
+ * @uses \ChristianBrown\MetOffice\DataPoint\Enums\WindDirection
  */
-final class AbstractForecastLocationPeriodRepresentationTest extends TestCase
+final class ForecastLocationDayPeriodRepresentationTest extends TestCase
 {
     public function testConstructor(): void
     {
         $feelsLike = 20;
         $maxUvIndex = 5;
+        $timePeriod = RepresentationTimePeriod::NIGHT;
         $precipitationProbability = 30;
         $screenRelativeHumidity = 70;
         $temperature = 25;
@@ -33,11 +36,11 @@ final class AbstractForecastLocationPeriodRepresentationTest extends TestCase
         $windGust = 15;
         $windSpeed = 10;
 
-        $forecast = new class($feelsLike, $maxUvIndex, $precipitationProbability, $screenRelativeHumidity, $temperature, $visibility, $weatherType, $windDirection, $windGust, $windSpeed) extends AbstractForecastLocationPeriodRepresentation {};
+        $forecast = new ForecastLocationDayPeriodRepresentation($feelsLike, $maxUvIndex, $timePeriod, $precipitationProbability, $screenRelativeHumidity, $temperature, $visibility, $weatherType, $windDirection, $windGust, $windSpeed);
 
-        self::assertInstanceOf(AbstractForecastLocationPeriodRepresentation::class, $forecast);
         self::assertSame($feelsLike, $forecast->feelsLike);
         self::assertSame($maxUvIndex, $forecast->maxUvIndex);
+        self::assertSame($timePeriod, $forecast->timePeriod);
         self::assertSame($precipitationProbability, $forecast->precipitationProbability);
         self::assertSame($screenRelativeHumidity, $forecast->screenRelativeHumidity);
         self::assertSame($temperature, $forecast->temperature);
