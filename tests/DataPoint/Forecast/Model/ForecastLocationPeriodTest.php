@@ -5,13 +5,10 @@ declare(strict_types=1);
 namespace ChristianBrown\MetOffice\Tests\DataPoint\Forecast\Model;
 
 use ChristianBrown\MetOffice\DataPoint\Forecast\Model\ForecastLocationPeriod;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ChristianBrown\MetOffice\DataPoint\Forecast\Model\ForecastLocationPeriod
- *
- * @codeCoverageIgnore
- */
+#[CoversClass(ForecastLocationPeriod::class)]
 final class ForecastLocationPeriodTest extends TestCase
 {
     public function testConstructor(): void

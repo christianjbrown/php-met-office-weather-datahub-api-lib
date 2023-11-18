@@ -8,18 +8,13 @@ use ChristianBrown\MetOffice\DataPoint\Enums\RepresentationTimePeriod;
 use ChristianBrown\MetOffice\DataPoint\Enums\Visibility;
 use ChristianBrown\MetOffice\DataPoint\Enums\WeatherType;
 use ChristianBrown\MetOffice\DataPoint\Enums\WindDirection;
+use ChristianBrown\MetOffice\DataPoint\Forecast\Model\AbstractForecastLocationPeriodRepresentation;
 use ChristianBrown\MetOffice\DataPoint\Forecast\Model\ForecastLocationDayPeriodRepresentation;
+use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
 
-/**
- * @covers \ChristianBrown\MetOffice\DataPoint\Forecast\Model\ForecastLocationDayPeriodRepresentation
- *
- * @uses \ChristianBrown\MetOffice\DataPoint\Forecast\Model\AbstractForecastLocationPeriodRepresentation
- * @uses \ChristianBrown\MetOffice\DataPoint\Enums\RepresentationTimePeriod
- * @uses \ChristianBrown\MetOffice\DataPoint\Enums\Visibility
- * @uses \ChristianBrown\MetOffice\DataPoint\Enums\WeatherType
- * @uses \ChristianBrown\MetOffice\DataPoint\Enums\WindDirection
- */
+#[CoversClass(AbstractForecastLocationPeriodRepresentation::class)]
+#[CoversClass(ForecastLocationDayPeriodRepresentation::class)]
 final class ForecastLocationDayPeriodRepresentationTest extends TestCase
 {
     public function testConstructor(): void
