@@ -8,7 +8,6 @@ interface RequestSenderInterface
 {
     public const DATE_FORMAT = 'Y-m-d\T';
     public const DATE_TIME_FORMAT = 'Y-m-d\TH\Z';
-    public const FRIENDLY_NAME = 'MET Office DataPoint API';
     public const QUERY_KEY_KEY = 'key';
     public const QUERY_KEY_RESOLUTION = 'res';
     public const QUERY_KEY_TIME = 'time';

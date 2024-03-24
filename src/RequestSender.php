@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace ChristianBrown\MetOffice\DataPoint;
 
-use ChristianBrown\JsonApiClient\RequestSender as JsonRequestSender;
+use ChristianBrown\JsonApiClient\JsonApiRequestSenderInterface;
 use ChristianBrown\MetOffice\DataPoint\Enums\ApiType;
 use ChristianBrown\MetOffice\DataPoint\Enums\DataType;
 use ChristianBrown\MetOffice\DataPoint\Enums\FormatType;
@@ -16,13 +16,12 @@ use function gmdate;
 final class RequestSender implements RequestSenderInterface
 {
     private string $apiKey;
-    private JsonRequestSender $jsonRequestSender;
+    private JsonApiRequestSenderInterface $jsonApiRequestSender;
 
-    public function __construct(string $apiKey)
+    public function __construct(JsonApiRequestSenderInterface $jsonApiRequestSender, string $apiKey)
     {
+        $this->jsonApiRequestSender = $jsonApiRequestSender;
         $this->apiKey = $apiKey;
-        $badResponseTransformer = new BadResponseTransformer();
-        $this->jsonRequestSender = new JsonRequestSender($badResponseTransformer);
     }
 
     public function get(DataType $dataType, ApiType $apiType, LocationType $locationType, ?int $locationId = null, ?ResolutionType $resolutionType = null, ?int $time = null): array
@@ -42,7 +41,7 @@ final class RequestSender implements RequestSenderInterface
                 $queryStrings[self::QUERY_KEY_TIME] = gmdate(self::DATE_TIME_FORMAT, $time);
             }
         }
-        $data = $this->jsonRequestSender->get(self::FRIENDLY_NAME, $url, $queryStrings);
+        $data = $this->jsonApiRequestSender->get($url, $queryStrings);
 
         return $data;
     }
